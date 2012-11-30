@@ -1,0 +1,32 @@
+name: <__trans phrase="Website and Blog Alias">
+id: BlogAlias
+key: BlogAlias
+author: Kunihiko Miyanaga
+author_link: http://www.ideamans.com/
+description: <__trans phrase="Makes usable keyword alias to an website and an blog.">
+version: 0.50
+schema_version: 0.11
+l10n_class: MT::Blog::Alias::L10N
+
+object_types:
+    blog:
+        alias: string(64) indexed
+    website:
+        alias: string(64) indexed
+
+callbacks:
+    init_app: $BlogAlias::MT::Blog::Alias::init_app
+    MT::Blog::post_save: $BlogAlias::MT::Blog::Alias::on_blog_saved
+    MT::Website::post_save: $BlogAlias::MT::Blog::Alias::on_blog_saved
+    MT::Blog::post_remove: $BlogAlias::MT::Blog::Alias::on_blog_removed
+    MT::Website::post_remove: $BlogAlias::MT::Blog::Alias::on_blog_removed
+
+applications:
+    cms:
+        callbacks:
+            template_param.cfg_prefs: $BlogAlias::MT::Blog::Alias::CMS::template_param_cfg_prefs
+            cms_save_filter.blog: $BlogAlias::MT::Blog::Alias::CMS::save_filter_blog
+            cms_save_filter.website: $BlogAlias::MT::Blog::Alias::CMS::save_filter_blog
+            cms_pre_save.blog: $BlogAlias::MT::Blog::Alias::CMS::pre_save_blog
+            cms_pre_save.website: $BlogAlias::MT::Blog::Alias::CMS::pre_save_blog
+
