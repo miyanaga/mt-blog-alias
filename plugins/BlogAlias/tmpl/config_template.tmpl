@@ -1,0 +1,43 @@
+<mt:if name="show_requires_website_alias">
+<mtapp:setting
+    id="website-alias-requires-website-alias-setting"
+    label="Alias"
+>
+    <label for="website-alias-requires-website-alias">
+        <input
+            type="checkbox"
+            class="cb"
+            id="website-alias-requires-website-alias"
+            name="requires_website_alias"
+            value="1"
+            <mt:if name="requires_website_alias">checked="checked"</mt:if>
+        >
+        <__trans phrase="Requires alias for websites.">
+    </label>
+</mtapp:setting>
+</mt:if>
+
+<mt:if name="requires_blog_alias_set_in_system">
+    <p><__trans phrase="Blog alias is already set to require in system scope."
+<mt:else>
+    <mtapp:setting
+        id="blog-alias-requires-blog-alias-setting"
+        label="Alias"
+    >
+        <label for="blog-alias-requires-blog-alias">
+            <input
+                type="checkbox"
+                class="cb"
+                id="blog-alias-requires-blog-alias"
+                name="requires_blog_alias"
+                value="1"
+                <mt:if name="requires_blog_alias">checked="checked"</mt:if>
+            >
+            <mt:if name="blog_id">
+            <__trans phrase="Requires alias for blogs in this website.">
+            <mt:else>
+            <__trans phrase="Requires alias for all blogs.">
+            </mt:if>
+        </label>
+    </mtapp:setting>
+</mt:if>
