@@ -26,6 +26,9 @@ use vars qw( %Lexicon );
     'Alias must be consisted from characters, numbers, underscore or hyphen.'
         => 'エイリアスには半角英数字、アンダースコア(_)、ハイフンのみが使用できます。',
     'Alias must be within 64 characters.' => 'エイリアスは64文字以内で指定してください。',
+    'mt:[_1] tag requires [_2] modifier.' => 'mt:[_1]テンプレートタグには[_2]モディファイアが必要です。',
+    'Can\'t resolve alias to [_1].' => 'エイリアス[_1]を解決できません。',
+    'Wildcard(*) not allowed in mt:[_1] tag.' => 'mt:[_1]テンプレートタグではエイリアスにワイルドカード(*)は使用できません。',
 );
 
 1;

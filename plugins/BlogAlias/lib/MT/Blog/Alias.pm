@@ -1,6 +1,9 @@
 package MT::Blog::Alias;
 
 use strict;
+use base qw(Exporter);
+
+our @EXPORT = qw(resolve_alias);
 
 my %alias_cache;
 my @target_args = qw(blog_id site_id blog_ids site_ids include_blogs include_websites exclude_blogs exclude_websites);

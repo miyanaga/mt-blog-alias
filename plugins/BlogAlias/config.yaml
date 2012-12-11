@@ -27,6 +27,7 @@ object_types:
 tags:
     function:
         BlogAlias: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias
+        BlogAliasToID: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias_to_id
 
 callbacks:
     init_app: $BlogAlias::MT::Blog::Alias::init_app

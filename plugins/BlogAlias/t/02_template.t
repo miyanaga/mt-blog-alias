@@ -19,6 +19,44 @@ test_common_website(
         $blog->alias('blog');
         $blog->save;
 
+        subtest 'mt:BlogAliasToId' => sub {
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:BlogAliasToId alias="blog">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $blog->id, 'mt:BlogAliasToId to blog in website context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $blog },
+                template => q{<mt:BlogAliasToId alias="blog">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $blog->id, 'mt:BlogAliasToId to blog in blog context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $blog },
+                template => q{<mt:BlogAliasToId alias="~/website">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->id, 'mt:BlogAliasToId to website with ~ in website context';
+                }
+            );
+
+            test_template(
+                stash => { },
+                template => q{<mt:BlogAliasToId alias="/website/blog">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $blog->id, 'mt:BlogAliasToId to blog with ~ in system context';
+                }
+            );
+        };
+
         subtest 'mt:BlogAlias in website context' => sub {
             test_template(
                 stash => { blog => $website },
