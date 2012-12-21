@@ -4,7 +4,7 @@ key: BlogAlias
 author: Kunihiko Miyanaga
 author_link: http://www.ideamans.com/
 description: <__trans phrase="Adds keyword alias to blog and website.">
-version: 0.50
+version: 1.00
 schema_version: 0.11
 l10n_class: MT::Blog::Alias::L10N
 
@@ -27,7 +27,11 @@ object_types:
 tags:
     function:
         BlogAlias: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias
+        BlogAliasPath: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias_path
         BlogAliasToID: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias_to_id
+        WebsiteAlias: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias
+        WebsiteAliasPath: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias_path
+        WebsiteAliasToID: $BlogAlias::MT::Blog::Alias::Tags::hdlr_blog_alias_to_id
 
 callbacks:
     init_app: $BlogAlias::MT::Blog::Alias::init_app

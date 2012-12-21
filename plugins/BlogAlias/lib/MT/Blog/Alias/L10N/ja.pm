@@ -17,7 +17,7 @@ use vars qw( %Lexicon );
 
 %Lexicon = (
     'Blog and Website Alias' => 'ブログ・ウェブサイトのエイリアス',
-    'Adds keyword alias to blog and website.' => 'ブログとウェブサイトにキーワードエイリアスを追加します。',
+    'Adds string alias to blog and website.' => 'ブログとウェブサイトに文字列によるエイリアスを追加します。',
 	'Alias' => 'エイリアス',
 	'Alias to this [_1] usable in blog_id, site_id, blog_ids, site_ids, include_blogs and include_websites modifiers like "~news".'
 		=> 'blog_id, site_id, blog_ids、site_ids、include_blogs、include_websitesモディファイアで"~news"のように使用できるこの[_1]に対するエイリアスを指定します。',
