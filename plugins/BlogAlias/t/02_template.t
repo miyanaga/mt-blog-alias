@@ -48,6 +48,15 @@ test_common_website(
             );
 
             test_template(
+                stash => { blog => $website },
+                template => q{<mt:WebsiteAliasToId alias="~/website">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->id, 'mt:WebsiteAliasToId to website with ~ in website context(synonym)';
+                }
+            );
+
+            test_template(
                 stash => { },
                 template => q{<mt:BlogAliasToId alias="/website/blog">},
                 test => sub {
@@ -66,6 +75,15 @@ test_common_website(
                     is $args{result}, $website->alias, 'mt:BlogAlias in website context';
                 }
             );
+
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:WebsiteAlias>},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->alias, 'mt:WebsiteAlias in website context(synonym)';
+                }
+            );
         };
 
         subtest 'mt:BlogAlias in blog context' => sub {
@@ -75,6 +93,73 @@ test_common_website(
                 test => sub {
                     my %args = @_;
                     is $args{result}, $blog->alias, 'mt:BlogAlias in blog context';
+                }
+            );
+        };
+
+        subtest 'mt:BlogAliasPath in website context' => sub {
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:BlogAliasPath>},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->alias, 'mt:BlogAliasPath in website context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:BlogAliasPath glue="-">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->alias, 'mt:BlogAliasPath with glue in website context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:BlogAliasPath reverse="-">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->alias, 'mt:BlogAliasPath with reverse in website context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $website },
+                template => q{<mt:WebsiteAliasPath>},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, $website->alias, 'mt:WebsiteAliasPath in website context(synonym)';
+                }
+            );
+        };
+
+        subtest 'mt:BlogAliasPath in blog context' => sub {
+            test_template(
+                stash => { blog => $blog },
+                template => q{<mt:BlogAliasPath>},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, join('/', $website->alias, $blog->alias), 'mt:BlogAliasPath in blog context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $blog },
+                template => q{<mt:BlogAliasPath glue="-">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, join('-', $website->alias, $blog->alias), 'mt:BlogAliasPath with glue in blog context';
+                }
+            );
+
+            test_template(
+                stash => { blog => $blog },
+                template => q{<mt:BlogAliasPath reverse="-">},
+                test => sub {
+                    my %args = @_;
+                    is $args{result}, join('/', $blog->alias, $website->alias), 'mt:BlogAliasPath with reverse in blog context';
                 }
             );
         };
